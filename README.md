@@ -1,0 +1,1 @@
+Iniciar o projeto com o comando `npm init -y` para criar o `package.json`
