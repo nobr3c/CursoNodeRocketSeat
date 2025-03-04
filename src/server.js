@@ -20,15 +20,31 @@ import http from 'node:http'
 //GET / users => buscando usuarios no back-end
 //POST / users => criando usuarios no back-end
 
+//Stateful - Stateless
+
+//JSON - JavaScript Object Notation
+
+//Cabeçalhos (Requisição/Resposta) => Metadados
+
+const users = []
+
 //arrow fuction função anonima
 const server = http.createServer((req, res) => {
     const { method, url} = req
 
     if(method === 'GET' && url === '/users'){
-        return res.end('Listagem de usuários')
+        return res
+        .setHeader('Content-type', 'application/json')
+        .end(JSON.stringify(users))
     }
 
-    if(method === 'POST' && url === '/users'){
+    if(method === 'POST' && url === '/users'){        
+        users.push({
+            id: 1,
+            name: 'John Doe',
+            email: 'johndoe@example.com'
+        })
+
         return res.end('Criação de usuários')
     }
     return res.end('Hello World')
